@@ -1,0 +1,47 @@
+package com.ayushman.animeexplorer
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.ayushman.animeexplorer.presentation.ui.navigation.AnimeNavigation
+import com.ayushman.animeexplorer.presentation.ui.theme.AnimeExplorerTheme
+import dagger.hilt.android.AndroidEntryPoint
+
+/**
+ * Main Activity that hosts the entire Jetpack Compose UI
+ * @AndroidEntryPoint tells Hilt this activity can receive dependencies
+ */
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            AnimeExplorerTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    // Our main navigation component
+                    AnimeNavigation()
+                }
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    AnimeExplorerTheme {
+        AnimeNavigation()
+    }
+}
